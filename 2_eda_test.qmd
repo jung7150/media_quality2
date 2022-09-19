@@ -1,0 +1,83 @@
+---
+title: "미디어품질연구2:탐색분석"
+author: "Jungwoon"
+format: 
+html5: 
+toc: true
+number-sections: true
+editor: visual
+theme: litera
+---
+
+# 자료 갖고오기
+
+v.rds p.rds 파일을 작업디렉토리에 복사
+
+```{r}
+getwd()
+```
+
+R환경으로 이입
+
+```{r}
+readRDS("v.rds") -> df
+dim(df)
+str(df)
+```
+
+```{r}
+names(df)
+```
+
+# 변수 선택
+
+```{r}
+install.packages("tidyverse")
+install.packages("tidytable")
+library(tidyverse)
+library(tidytable)
+df %>% select.(class, starts_with("m_"), humility) -> df
+names(df)
+```
+
+# 기술통계
+
+```{r}
+install.packages("skimr")
+install.packages("gt")
+library(skimr)
+library(gt)
+skim(df) %>% gt()
+```
+
+# 상관분석
+
+```{r}
+install.packages('GGally')
+library(GGally)
+ggpairs(df)
+```
+
+가장 상관성이 높은 것은 m_authority 와 m_belong으로 0.789로 가장 높은 상관관계이다.
+
+분석할 변수를 계층지각, 6가지 도덕기반, 지적겸손을 선택했다.
+
+이유:
+
+8개의 변수의 상관관계를 분석한 결과 지적겸손은 돌봄(r = 0.231, p \< 0.001), 공평(r = 0.243, p \< 0.001), 자유(r = 0.152, p \< 0.05)와 상관성이 관측되었다.
+
+계층은 자유도덕기반과만 상관성이 관측됐다. ( r = 0.127, p \< 0.001)
+
+계층지각(독립변수) -\> 지적겸손(종속변수) 계층지각이 지적겸손을 예측할 것이다 라는 가설.
+
+-   가설: 지각된 계층수준이 높을수록 지적으로 겸손할 것이다.
+
+-   분석결과: 계층지각과 지적겸손 사이에는 통계적으로 유의한 상관성이 관측되지 않았다( r = - 0.077, p \> 0.05). 연구가설은 지지되지 않았다.
+
+49분
+
+별 1개 (p \< 0.05)
+
+별 2개 (p \< 0.01)
+
+별 3개 (p \< 0.001)
