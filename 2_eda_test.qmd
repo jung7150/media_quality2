@@ -1,12 +1,8 @@
 ---
 title: "미디어품질연구2:탐색분석"
 author: "Jungwoon"
-format: 
-html5: 
-toc: true
-number-sections: true
+format: html
 editor: visual
-theme: litera
 ---
 
 # 자료 갖고오기
@@ -32,10 +28,9 @@ names(df)
 # 변수 선택
 
 ```{r}
-install.packages("tidyverse")
-install.packages("tidytable")
-library(tidyverse)
 library(tidytable)
+library(tidyverse)
+library(dplyr)
 df %>% select.(class, starts_with("m_"), humility) -> df
 names(df)
 ```
@@ -43,8 +38,6 @@ names(df)
 # 기술통계
 
 ```{r}
-install.packages("skimr")
-install.packages("gt")
 library(skimr)
 library(gt)
 skim(df) %>% gt()
@@ -53,7 +46,6 @@ skim(df) %>% gt()
 # 상관분석
 
 ```{r}
-install.packages('GGally')
 library(GGally)
 ggpairs(df)
 ```
